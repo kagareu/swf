@@ -3,7 +3,7 @@
 # Define variables
 SERVICE_NAME="swf.service"
 SERVICE_PATH="/etc/systemd/system/$SERVICE_NAME"
-PROJECT_DIR="/home/kagareu/projects/swf-1"
+PROJECT_DIR="/opt/swf"
 PYTHON_BIN="/usr/bin/python3"
 
 # Ensure the script is run as root
