@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Squid Configuration Manager</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Squid Configuration Manager</h1>
+        <div id="config-display"></div>
+        <!-- Basic Configuration -->
+        <h2>Basic Configuration</h2>
+        <textarea id="basic-config" rows="5" cols="50"></textarea>
+        <button onclick="updateBlock('basic')">Update Basic Configuration</button>
+
+        <!-- ACLs -->
+        <h2>Access Control Lists (ACLs)</h2>
+        <textarea id="acls-config" rows="5" cols="50"></textarea>
+        <button onclick="updateBlock('acls')">Update ACLs</button>
+
+        <!-- Allow Access -->
+        <h2>Allow Access</h2>
+        <textarea id="allow_access-config" rows="5" cols="50"></textarea>
+        <button onclick="updateBlock('allow_access')">Update Allow Access</button>
+
+        <!-- Deny Access -->
+        <h2>Deny Access</h2>
+        <textarea id="deny_access-config" rows="5" cols="50"></textarea>
+        <button onclick="updateBlock('deny_access')">Update Deny Access</button>
+
+        <!-- Cache Settings -->
+        <h2>Cache Settings</h2>
+        <textarea id="cache_settings-config" rows="5" cols="50"></textarea>
+        <button onclick="updateBlock('cache_settings')">Update Cache Settings</button>
+
+        <!-- Logging -->
+        <h2>Logging</h2>
+        <textarea id="logging-config" rows="5" cols="50"></textarea>
+        <button onclick="updateBlock('logging')">Update Logging</button>
+
+        <h2>Squid Logs</h2>
+<iframe src="/logs" style="width: 100%; height: 300px; border: 1px solid #ccc;"></iframe>
+
+        <!-- DNS Settings -->
+        <h2>DNS Settings</h2>
+        <textarea id="dns_settings-config" rows="5" cols="50"></textarea>
+        <button onclick="updateBlock('dns_settings')">Update DNS Settings</button>
+    </div>
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</body>
+</html>
