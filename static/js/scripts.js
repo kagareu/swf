@@ -51,6 +51,22 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(error => console.error('Error updating block:', error));
     }
 
+    // Reload Squid configuration
+    function reloadSquid() {
+        fetch('/reload', {
+            method: 'POST',
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message) {
+                    alert(data.message);
+                } else if (data.error) {
+                    alert(`Error: ${data.error}`);
+                }
+            })
+            .catch(error => console.error('Error reloading Squid configuration:', error));
+    }
+
     // Initial fetch of the configuration
     fetchConfig();
 

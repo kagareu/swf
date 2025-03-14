@@ -1,9 +1,10 @@
 from flask import Flask, request, jsonify, render_template
 import os
+import subprocess
 
 app = Flask(__name__)
 
-SQUID_CONFIG_FILE = 'squid.conf'
+SQUID_CONFIG_FILE = '/etc/squid/squid.conf'
 
 # Ensure the squid.conf file exists
 if not os.path.exists(SQUID_CONFIG_FILE):
@@ -107,6 +108,19 @@ def get_logs():
                     break
                 yield f"{line}<br>"
     return Response(generate(), mimetype='text/html')
+
+# Reload Squid configuration
+@app.route('/reload', methods=['POST'])
+def reload_squid():
+    try:
+        # Execute the Squid reload command
+        result = subprocess.run(['sudo', 'squid', '-k', 'reconfigure'], capture_output=True, text=True)
+        if result.returncode == 0:
+            return jsonify({"message": "Squid configuration reloaded successfully."})
+        else:
+            return jsonify({"error": f"Failed to reload Squid configuration: {result.stderr}"}), 500
+    except Exception as e:
+        return jsonify({"error": f"An error occurred: {str(e)}"}), 500
 
 # Serve the main HTML template
 @app.route('/')

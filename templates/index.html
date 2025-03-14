@@ -47,6 +47,9 @@
         <h2>DNS Settings</h2>
         <textarea id="dns_settings-config" rows="5" cols="50"></textarea>
         <button onclick="updateBlock('dns_settings')">Update DNS Settings</button>
+
+        <h2>Reload Squid Configuration</h2>
+        <button id="reload-squid" onclick="reloadSquid()">Reload Configuration</button>
     </div>
     <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 </body>
