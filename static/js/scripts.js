@@ -60,6 +60,23 @@ function fetchConfig() {
         .catch(error => console.error('Error fetching config:', error));
 }
 
+// Check syntax
+function checkSyntax() {
+    fetch('/check-syntax', {
+        method: 'GET',
+    })
+        .then(response => response.json())
+        .then(data => {
+            const syntaxOutput = document.getElementById('syntax-output');
+            if (data.message) {
+                syntaxOutput.innerHTML = `<strong>${data.message}</strong><br>${data.output || ''}`;
+            } else if (data.error) {
+                syntaxOutput.innerHTML = `<strong>Error:</strong> ${data.error}<br>${data.output || ''}`;
+            }
+        })
+        .catch(error => console.error('Error checking syntax:', error));
+}
+
 // Run these functions after the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', function () {
     fetchConfig();
