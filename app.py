@@ -120,7 +120,7 @@ def get_logs2():
                 if not line:
                     break
                 yield f"{line}<br>"
-    return Response(generate(), mimetype='text/html')
+    return Response(generate2(), mimetype='text/html')
 
 # Reload Squid configuration
 @app.route('/reload', methods=['POST'])
