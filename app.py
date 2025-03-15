@@ -97,10 +97,23 @@ def get_config():
     return jsonify(blocks)
 
 # render log viewer
-@app.route('/logs')
+@app.route('/access-logs')
 def get_logs():
     def generate():
         with open('/var/log/squid/access.log', 'r') as f:
+            f.seek(0, 2)  # Move to the end of the file
+            while True:
+                line = f.readline()
+                if not line:
+                    break
+                yield f"{line}<br>"
+    return Response(generate(), mimetype='text/html')
+
+# render log viewer
+@app.route('/cache-logs')
+def get_logs():
+    def generate():
+        with open('/var/log/squid/cache.log', 'r') as f:
             f.seek(0, 2)  # Move to the end of the file
             while True:
                 line = f.readline()
