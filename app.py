@@ -111,8 +111,8 @@ def get_logs():
 
 # render log viewer
 @app.route('/cache-logs')
-def get_logs():
-    def generate():
+def get_logs2():
+    def generate2():
         with open('/var/log/squid/cache.log', 'r') as f:
             f.seek(0, 2)  # Move to the end of the file
             while True:
