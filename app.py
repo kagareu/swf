@@ -122,6 +122,19 @@ def reload_squid():
     except Exception as e:
         return jsonify({"error": f"An error occurred: {str(e)}"}), 500
 
+# Check Squid configuration syntax
+@app.route('/check-syntax', methods=['GET'])
+def check_syntax():
+    try:
+        # Run the squid -k parse command to check syntax
+        result = subprocess.run(['sudo', 'squid', '-k', 'parse'], capture_output=True, text=True)
+        if result.returncode == 0:
+            return jsonify({"message": "Syntax is valid.", "output": result.stdout})
+        else:
+            return jsonify({"error": "Syntax check failed.", "output": result.stderr}), 400
+    except Exception as e:
+        return jsonify({"error": f"An error occurred: {str(e)}"}), 500
+
 # Serve the main HTML template
 @app.route('/')
 def index():

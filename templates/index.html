@@ -9,8 +9,8 @@
 <body>
     <div class="container">
         <h1>Squid Configuration Manager</h1>
-        <div id="config-display"></div>
-        <!-- Basic Configuration -->
+        
+        <!-- Basic Configuration <div id="config-display"></div>-->
         <h2>Basic Configuration</h2>
         <textarea id="basic-config" rows="5" cols="50"></textarea>
         <button onclick="updateBlock('basic')">Update Basic Configuration</button>
@@ -47,6 +47,10 @@
         <h2>DNS Settings</h2>
         <textarea id="dns_settings-config" rows="5" cols="50"></textarea>
         <button onclick="updateBlock('dns_settings')">Update DNS Settings</button>
+
+        <h2>Check Squid Configuration Syntax</h2>
+        <button id="check-syntax" onclick="checkSyntax()">Check Syntax</button>
+        <div id="syntax-output" style="background-color: #f4f4f4; padding: 10px; margin-top: 10px; border: 1px solid #ccc; white-space: pre-wrap;"></div>
 
         <h2>Reload Squid Configuration</h2>
         <button id="reload-squid" onclick="reloadSquid()">Reload Configuration</button>
